@@ -1,14 +1,21 @@
 version: '3.7'
 services:
   proxy:
+    # command: sleep 3600
     image: nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
+      - ~/letsencrypt/archive/replicated-app.annarchy.net:/etc/letsencrypt/archive/replicated-app.annarchy.net
+      - ~/letsencrypt/archive/kurl.annarchy.net:/etc/letsencrypt/archive/kurl.annarchy.net
+      - ~/letsencrypt/archive/amazonaws.annarchy.net:/etc/letsencrypt/archive/amazonaws.annarchy.net
+      - ~/letsencrypt/archive/registry.annarchy.net:/etc/letsencrypt/archive/registry.annarchy.net
+      - ~/letsencrypt/archive/proxy-replicated.annarchy.net:/etc/letsencrypt/archive/proxy-replicated.annarchy.net
       - ~/letsencrypt/live/replicated-app.annarchy.net:/etc/letsencrypt/live/replicated-app.annarchy.net
       - ~/letsencrypt/live/proxy-replicated.annarchy.net:/etc/letsencrypt/live/proxy-replicated.annarchy.net
       - ~/letsencrypt/live/kurl.annarchy.net:/etc/letsencrypt/live/kurl.annarchy.net
       - ~/letsencrypt/live/amazonaws.annarchy.net:/etc/letsencrypt/live/amazonaws.annarchy.net
       - ~/letsencrypt/live/registry.annarchy.net:/etc/letsencrypt/live/registry.annarchy.net
-      - ./proxy.conf:/etc/nginx.d/proxy.conf
+      - ./proxy.conf:/etc/nginx/conf.d/proxy.conf
+      - ./options-ssl-nginx.sh:/docker-entrypoint.d/90-options-ssl-nginx.sh
