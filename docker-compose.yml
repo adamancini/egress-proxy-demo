@@ -2,10 +2,13 @@ version: '3.7'
 services:
   proxy:
     image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ~/letsencrypt/live/replicated-app.annarchy.net:/etc/letsencrypt/live/replicated-app.annarchy.net
       - ~/letsencrypt/live/proxy-replicated.annarchy.net:/etc/letsencrypt/live/proxy-replicated.annarchy.net
       - ~/letsencrypt/live/kurl.annarchy.net:/etc/letsencrypt/live/kurl.annarchy.net
       - ~/letsencrypt/live/amazonaws.annarchy.net:/etc/letsencrypt/live/amazonaws.annarchy.net
       - ~/letsencrypt/live/registry.annarchy.net:/etc/letsencrypt/live/registry.annarchy.net
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./proxy.conf:/etc/nginx.d/proxy.conf
