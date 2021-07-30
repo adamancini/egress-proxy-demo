@@ -6,6 +6,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    network_mode: host
     volumes:
       - ~/letsencrypt/archive/replicated-app.annarchy.net:/etc/letsencrypt/archive/replicated-app.annarchy.net
       - ~/letsencrypt/archive/kurl.annarchy.net:/etc/letsencrypt/archive/kurl.annarchy.net
@@ -17,5 +18,5 @@ services:
       - ~/letsencrypt/live/kurl.annarchy.net:/etc/letsencrypt/live/kurl.annarchy.net
       - ~/letsencrypt/live/amazonaws.annarchy.net:/etc/letsencrypt/live/amazonaws.annarchy.net
       - ~/letsencrypt/live/registry.annarchy.net:/etc/letsencrypt/live/registry.annarchy.net
-      - ./proxy.conf:/etc/nginx/conf.d/proxy.conf
+      - ./proxy.conf:/etc/nginx/nginx.conf
       - ./options-ssl-nginx.sh:/docker-entrypoint.d/90-options-ssl-nginx.sh
